@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "maven-3.3.9"
+    }
+    stages {    
+        stage('checkout the code'){
+            agent {label 'maven'}
+            steps{
+                checkout scm
+                echo "Removing files and folders"
+                sh 'ls -al'  
+            }    
+        }                
+    }
+}
